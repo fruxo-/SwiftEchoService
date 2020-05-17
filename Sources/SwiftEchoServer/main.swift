@@ -20,7 +20,9 @@ func main(args: [String]) throws {
     let port = args.dropFirst(2).first
 
     switch (address, port) {
-    case (.none, .none):
+    case (.none, .none),
+         (.none, _),
+         (_, .none):
         print("Usage: ADDRESS PORT")
         exit(1)
 
