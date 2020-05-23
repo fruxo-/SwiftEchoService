@@ -42,7 +42,7 @@ struct EchoServiceClientBootStrapper {
             let response = try echo.response.wait()
             logger.info("Echo received: \(response)")
         } catch {
-            logger.info("Echo failed: \(error)")
+            logger.error("Echo failed: \(error)")
         }
     }
 }

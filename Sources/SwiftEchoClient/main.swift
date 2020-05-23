@@ -7,30 +7,22 @@ let logger = Logger(label: "EchoClient")
 struct ClientArguments: ParsableCommand {
 
     @Option(name: .shortAndLong, help: "IP address of the service")
-    var inet_address: String!
+    var inet_address: String
 
     @Option(name: .shortAndLong, help: "TCP/IP port of the service")
-    var port: Int!
+    var port: Int
 
     @Argument(help: "The message to send")
-    var message: String!
+    var message: String
 
     func run() throws {
-        if self.mandatoryOptionsMissing() {
-            print(ClientArguments.helpMessage())
-        } else {
-            logger.info("Service address: \(inet_address!)")
-            logger.info("Service port: \(port!)")
-            try EchoServiceClientBootStrapper().talkTo(
-                serviceOn: inet_address,
-                listeningTo: port,
-                sending: message
-            )
-        }
-    }
-
-    fileprivate func mandatoryOptionsMissing() -> Bool {
-        inet_address == nil || port == nil || message == nil
+        logger.info("Service address: \(inet_address)")
+        logger.info("Service port: \(port)")
+        try EchoServiceClientBootStrapper().talkTo(
+            serviceOn: inet_address,
+            listeningTo: port,
+            sending: message
+        )
     }
 }
 
