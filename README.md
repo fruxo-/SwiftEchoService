@@ -10,7 +10,7 @@ git clone https://github.com/fruxo-/SwiftEchoService.git
 # Running
 ## Via Docker
 ```
-docker build -t swift_echo_service:latest .
+docker build --no-cache -t swift_echo_service:latest .
 docker run -p 8888:8888 -t swift_echo_service:latest
 ```
 
