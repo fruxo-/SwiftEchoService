@@ -40,7 +40,7 @@ struct EchoServiceClientBootStrapper {
         // wait() on the response to stop the program from exiting before the response is received.
         do {
             let response = try echo.response.wait()
-            logger.info("Echo received: \(response.message)")
+            logger.info("Echo received: \(response)")
         } catch {
             logger.info("Echo failed: \(error)")
         }
