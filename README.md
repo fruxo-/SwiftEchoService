@@ -20,11 +20,11 @@ docker run -p 8888:8888 -t swift_echo_service:latest
 
 ###  Running the server
 ```
-swift run SwiftEchoServer HOST PORT
+swift run SwiftEchoServer -i HOST -p PORT
 ```
 ### Running the client
 ```
-swift run SwiftEchoClient SEVER_HOST SERVER_PORT MESSAGE 
+swift run SwiftEchoClient -i SEVER_HOST -p SERVER_PORT MESSAGE 
 ```
 
 # Building
