@@ -2,9 +2,9 @@ import Foundation
 import Logging
 import ArgumentParser
 
-let logger = Logger(label: "EchoClient")
-
 struct ClientArguments: ParsableCommand {
+
+    fileprivate static let logger = Logger(label: "ClientArguments")
 
     @Option(name: .shortAndLong, help: "IP address of the service")
     var inet_address: String
@@ -16,21 +16,14 @@ struct ClientArguments: ParsableCommand {
     var message: String
 
     func run() throws {
-        logger.info("Service address: \(inet_address)")
-        logger.info("Service port: \(port)")
+        ClientArguments.logger.info("Service address: \(inet_address)")
+        ClientArguments.logger.info("Service port: \(port)")
         try EchoServiceClientBootStrapper().talkTo(
             serviceOn: inet_address,
             listeningTo: port,
             sending: message
         )
     }
-}
-
-// Quieten the logs.
-LoggingSystem.bootstrap {
-    var handler = StreamLogHandler.standardOutput(label: $0)
-    handler.logLevel = .critical
-    return handler
 }
 
 ClientArguments.main()

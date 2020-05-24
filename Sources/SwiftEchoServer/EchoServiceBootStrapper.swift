@@ -1,9 +1,12 @@
 import Foundation
+import Logging
 import NIO
 import GRPC
 import SwiftEchoModel
 
 struct EchoServiceBootStrapper {
+
+    static fileprivate let logger = Logger(label: "EchoServiceBootStrapper")
 
     func run(on address: String, listeningTo port: Int) throws {
         // Setup an `EventLoopGroup` for the connection to run on.
@@ -22,7 +25,7 @@ struct EchoServiceBootStrapper {
         server.map {
             $0.channel.localAddress
         }.whenSuccess { address in
-            logger.info("server started on port \(address!.port!)")
+            EchoServiceBootStrapper.logger.info("server started on port \(address!.port!)")
         }
 
         // Wait on the server's `onClose` future to stop the program from exiting.

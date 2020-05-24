@@ -6,6 +6,8 @@ import Logging
 
 struct EchoServiceClientBootStrapper {
 
+    fileprivate static let logger = Logger(label: "EchoServiceClientBootStrapper")
+
     func talkTo(serviceOn address: String, listeningTo port: Int, sending message: String) throws {
         // Setup an `EventLoopGroup` for the connection to run on.
         //
@@ -18,7 +20,8 @@ struct EchoServiceClientBootStrapper {
         }
 
         // Configure the channel, we're not using TLS so the connection is `insecure`.
-        let channel = ClientConnection.insecure(group: group)
+        let channel = ClientConnection
+            .insecure(group: group)
             .connect(host: address, port: port)
 
         // Provide the connection to the generated client.
@@ -40,9 +43,9 @@ struct EchoServiceClientBootStrapper {
         // wait() on the response to stop the program from exiting before the response is received.
         do {
             let response = try echo.response.wait()
-            logger.info("Echo received: \(response)")
+            EchoServiceClientBootStrapper.self.logger.info("Echo received: \(response)")
         } catch {
-            logger.error("Echo failed: \(error)")
+            EchoServiceClientBootStrapper.self.logger.error("Echo failed: \(error)")
         }
     }
 }
