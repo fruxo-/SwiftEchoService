@@ -21,6 +21,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/grpc/grpc-swift.git", from: "1.0.0-alpha.12"),
         .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "0.0.6")),
+        .package(url: "https://github.com/apple/swift-metrics.git", "1.0.0" ..< "3.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -38,6 +39,7 @@ let package = Package(
                 "SwiftEchoModel",
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "Metrics", package: "swift-metrics")
             ],
             path: "Sources/SwiftEchoServer"
         ),
@@ -47,6 +49,7 @@ let package = Package(
                 "SwiftEchoModel",
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "Metrics", package: "swift-metrics")
             ],
             path: "Sources/SwiftEchoClient"
         ),
