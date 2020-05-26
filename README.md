@@ -11,7 +11,12 @@ git clone https://github.com/fruxo-/SwiftEchoService.git
 ## Via Docker
 ```
 docker build --no-cache -t swift_echo_service:latest .
-docker run -p 8888:8888 -t swift_echo_service:latest
+docker run -d -p 8888:8888 swift_echo_service:latest
+```
+
+To "jump" into the image:
+```
+docker exec -it [CONTAINER_ID] bash
 ```
 
 ## From your OS
