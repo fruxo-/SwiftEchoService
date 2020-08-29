@@ -1,0 +1,4 @@
+.build/
+.swiftpm/
+Data/
+SwiftEchoService.xcworkspace/
