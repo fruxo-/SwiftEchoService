@@ -1,10 +1,10 @@
-FROM swift:latest as builder
+FROM swift:5.5-amazonlinux2 as builder
 WORKDIR /root
 RUN git clone https://github.com/fruxo-/SwiftEchoService.git
 WORKDIR /root/SwiftEchoService
 RUN swift build -c release --product SwiftEchoServer
 
-FROM swift:slim as runner
+FROM swift:5.5-amazonlinux2 as runner
 WORKDIR /root
 RUN mkdir SwiftEchoService
 COPY --from=builder /root/SwiftEchoService ./SwiftEchoService
